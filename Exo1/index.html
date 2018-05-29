@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Exo JS </title>
+	</head>
+
+	<body>
+
+		<form action="">
+			<label for="colorName">Tape ta couleur</label>
+			<input type="text" name="colorName" id="colorName" value="">
+			<label for="hexValue"></label>
+			<input type="color" name="hexValue" id="hexValue" value="">
+			<a href="index2.html"><button type="button" id="newWindow_launcher">affiche le doublon key/value dans une autre page</button></a>
+		</form>
+
+		<script type="text/javascript">
+		//stock 2 inputs (key et value) dans localStorage et ouvre nouvelle page
+			var nomCoul = document.getElementById("colorName"),
+				hexValue = document.getElementById("hexValue"),
+				validateButton = document.getElementById("newWindow_launcher");
+			
+			validateButton.addEventListener("click", event => {
+				nomCoul = nomCoul.value;
+				hexValue = hexValue.value;
+				localStorage.setItem(nomCoul, hexValue);
+			}, false);
+		</script>
+
+	</body>
+
+</html>

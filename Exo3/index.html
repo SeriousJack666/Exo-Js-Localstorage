@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Exo3 LocalStorage</title>
+	</head>
+
+	<body>
+		
+		<div id="zoneEdition">
+			<h1>Zone d'édition</h1>
+			<form id="form1">
+				<label for="nom">Ecris ton nom, mamen</label>
+				<input type="text" name="nom" id="nom">
+
+				<label for="valeur">Valeur</label>
+				<input type="text" name="valeur" id="valeur">
+
+				<button type="button" id="ecrire">Ecrire</button>
+				<button type="button" id="lire">Lire</button>
+				<button type="button" id="effacer">Effacer</button>
+				<button type="button" id="reinitialiser">Réinitialiser</button>
+			</form>
+		</div>
+
+		<div id="zonePreview">
+			<h2>Zone de prévisualisation</h2>
+		</div>
+		
+		<script type="text/javascript">
+			var nom = document.getElementById("nom"), 
+				valeur = document.getElementById("valeur"),
+				btEcrire = document.getElementById("ecrire"),
+				btLire = document.getElementById("lire"),
+				btEffacer = document.getElementById("effacer"),
+				btReset = document.getElementById("reinitialiser"),
+				zonePreview = document.getElementById("zonePreview"),
+				selectZone = document.getElementById("selectZone");
+
+
+			btEcrire.addEventListener("click", event => {
+				event.preventDefault();
+				nom = nom.value,
+				valeur = valeur.value;
+				localStorage.setItem(nom, valeur);
+/*_____faire apparaître toutes les clefs dans un select____
+
+				for (i=0; i<localStorage.length; i++){
+					var option = document.createElement("OPTION"),
+						nom = localStorage.key(i),
+						valeur = localStorage.getItem(nom);
+					var textNode = document.createTextNode(nom);
+
+					option.appendChild(textNode);
+					selectZone.appendChild(option);
+				};
+__________________________________________________________*/
+			});
+
+
+			btLire.addEventListener("click", event => {
+				event.preventDefault();
+				var nom = localStorage.key(0),
+					valeur = localStorage.getItem(nom);
+
+				reader = document.createElement("P");
+				textNode = document.createTextNode("Vous avez entré : "+nom+". Sa valeur associée est : "+valeur);
+				reader.appendChild(textNode);
+				zonePreview.appendChild(reader);
+			});
+
+
+			btEffacer.addEventListener("click", event => {
+				event.preventDefault();
+				var nom = localStorage.key(0),
+					valeur = localStorage.getItem(nom);
+				localStorage.removeItem(nom);
+			});
+
+
+			btReset.addEventListener("click", event => {
+				localStorage.clear();
+			});
+
+
+		</script>
+
+	</body>
+</html>

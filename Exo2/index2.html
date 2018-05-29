@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Exo JS </title>
+	</head>
+
+	<body>
+		
+		<strong><p id="nameCol"></p></strong>
+		<p id="valCol"></p>
+
+		<script type="text/javascript">
+			var p1 = document.getElementById("nameCol"), 
+				p2 = document.getElementById("valCol"), 
+				valColKey = localStorage.key(0);
+
+			p1.textContent = valColKey;
+			p2.textContent = localStorage.getItem(valColKey);
+		</script>
+	</body>
+
+</html>

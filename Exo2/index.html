@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Exo JS </title>
+	</head>
+
+	<body>
+
+		<form action="">
+			<label for="colorName">Tape ta couleur</label>
+			<input type="text" name="colorName" id="colorName" value="">
+			<label for="hexValue"></label>
+			<input type="color" name="hexValue" id="hexValue" value="">
+			<button type="button" id="newWindow_launcher">affiche le doublon key/value dans une autre page</button>
+		</form>
+
+		<form>
+			<button id="compteurClics"></button>
+		</form>
+
+		<div id = scoreSentence></div>
+		<script type="text/javascript">
+
+		//au click du 1er Bouton : stock 2 inputs (key et value) dans localStorage et les afficher dans 1 nouvelle page
+			var nomCoul = document.getElementById("colorName"),
+				hexValue = document.getElementById("hexValue"),
+				validateButton = document.getElementById("newWindow_launcher");
+
+			validateButton.addEventListener("click", event => {
+				nomCoul = nomCoul.value;				
+				hexValue = hexValue.value;
+				localStorage.setItem(nomCoul, hexValue);
+			}, false);
+
+
+		//au click du 2nd Bouton : incrémente le compteur de 1 et affiche où il en est dans une balise <p>
+			var clockButton = document.getElementById("compteurClics"), divScore = document.getElementById("scoreSentence"), pCompteur, compteur = 0;
+
+			clockButton.addEventListener("click", event => {
+				event.preventDefault();
+				compteur++;
+				localStorage.setItem("clickCount", compteur);
+				compteur = parseInt(localStorage.getItem("clickCount"), 10);
+	
+				pCompteur = document.createElement("P");
+				textNode = document.createTextNode("Vous avez cliké "+compteur+" fois.");
+				pCompteur.appendChild(textNode);
+				divScore.appendChild(pCompteur);
+
+			}, false);
+
+		</script>
+
+	</body>
+
+</html>
